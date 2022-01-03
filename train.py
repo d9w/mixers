@@ -21,6 +21,7 @@ if __name__ == "__main__":
     parser.add_argument("--hidden", default=512, type=int, help="Size of hidden_dim")
     parser.add_argument("--token", default=256, type=int, help="Size of tokens_hidden_dim")
     parser.add_argument("--channels", default=2048, type=int, help="Size of channels_hidden_dim")
+    parser.add_argument("--depth", default=8, type=int, help="Number of blocks")
     parser.add_argument("--epochs", default=200, type=int, help="Total number of epochs")
     parser.add_argument("--label_smoothing", default=0.1, type=float, help="Use 0.0 for no label smoothing")
     parser.add_argument("--learning_rate", default=0.1, type=float, help="Base learning rate at the start of the training")
