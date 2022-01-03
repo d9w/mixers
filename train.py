@@ -17,7 +17,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--adaptive", default=True, type=bool, help="True if you want to use the Adaptive SAM")
     parser.add_argument("--batch_size", default=128, type=int, help="Batch size used in the training and validation loop")
-    parser.add_argument("--patch", default=32, type=int, help="Patch size")
+    parser.add_argument("--patch", default=8, type=int, help="Patch size")
     parser.add_argument("--hidden", default=512, type=int, help="Size of hidden_dim")
     parser.add_argument("--token", default=256, type=int, help="Size of tokens_hidden_dim")
     parser.add_argument("--channels", default=2048, type=int, help="Size of channels_hidden_dim")
@@ -43,10 +43,10 @@ if __name__ == "__main__":
     val_acc = 0
     # model = WideResNet(args.depth, args.width_factor, args.dropout, in_channels=3, labels=10).to(device)
     if args.conv:
-        model = ConvMixer(args.hidden, args.depth, kernel_size=args.kernel,
-                          patch_size=args.patch, n_classes=10).to(device)
+        model = ConvMixer(num_classes=10, hidden_dim=args.hidden, patch_size=args.patch,
+                          kernel_size=args.kernel, depth=args.depth).to(device)
     else:
-        model = MLPMixer(num_classes=10, image_size=32, patch_size=args.patch,
+        model = MLPMixer(num_classes=10, image_size=64, patch_size=args.patch,
                          hidden_dim=args.hidden, tokens_hidden_dim=args.token,
                          channels_hidden_dim=args.channels, num_layers=args.depth).to(device)
 
